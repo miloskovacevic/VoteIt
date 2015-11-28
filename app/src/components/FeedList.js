@@ -1,23 +1,30 @@
-/**
- * Created by Milos on 11/26/2015.
- */
+/** @jsx React.DOM */
 
-var React = require('React'),
+var React = require('react'),
     FeedItem = require('./FeedItem');
 
 var FeedList = React.createClass({
-    render: function(){
 
-        var feedItems = this.props.items.map(function (item) {
-            return <FeedItem title={item.title} desc={item.description}
-                             votes = {item.voteCount}   />
-        });
+    render: function() {
+
+        var feedItems = this.props.items.map(function(item) {
+            return <FeedItem key={item.key}
+                             id={item.key}
+                             title={item.title}
+                             desc={item.description}
+                             voteCount={item.voteCount}
+                             onVote={this.props.onVote} />
+        }.bind(this));
+
         return (
-            <ul className = "list-group container">
-                {feedItems}
-            </ul>
+            <div className="container">
+                <ul className="list-group">
+                    {feedItems}
+                </ul>
+            </div>
         );
     }
+
 });
 
 module.exports = FeedList;

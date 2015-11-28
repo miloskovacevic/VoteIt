@@ -1,21 +1,44 @@
-/**
- * Created by Milos on 11/26/2015.
- */
+/** @jsx React.DOM */
 
 var React = require('react');
 
 var FeedForm = React.createClass({
-    render: function(){
+
+    handleForm: function(e) {
+        e.preventDefault();
+
+        var newItem = {
+            title: this.refs.title.value,
+            description: this.refs.desc.value,
+            voteCount: 0
+        };
+
+        this.refs.feedForm.getDOMNode().reset();
+
+        this.props.onNewItem(newItem);
+
+    },
+
+    render: function() {
+        var display = this.props.displayed ? 'block' : 'none';
+        var styles = {
+            display: display
+        };
         return (
-                <form className="container">
-                    <div className ="form-group">
-                        <input type="text" className="form-control" placeholder="Title" />
-                        <input type="text" className="form-control" placeholder="Description" />
-                        <button type="submit" className="btn btn-primary btn-block">Add</button>
-                    </div>
-                </form>
+            <form ref="feedForm" style={styles} id="feedForm" className="container" onSubmit={this.handleForm}>
+
+                <div className="form-group">
+
+                    <input ref="title" type="text" className="form-control" placeholder="Title" />
+                    <input ref="desc" type="text" className="form-control" placeholder="Description" />
+
+                    <button type="submit" className="btn btn-primary btn-block">Add</button>
+                </div>
+
+            </form>
         );
     }
-});
-module.exports = FeedForm;
 
+});
+
+module.exports = FeedForm;

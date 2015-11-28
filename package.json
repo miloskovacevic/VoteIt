@@ -8,11 +8,13 @@
   },
   "devDependencies": {
     "browserify": "^12.0.1",
+    "firebase": "^2.3.2",
+    "lodash": "^3.10.1",
     "reactify": "^1.1.1"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "browserify -t reactify app/src/main.js -o app/build/main.js  && httpster app"
+    "start": "browserify -t reactify app/src/main.js -o app/build/main.js  && httpster"
   },
   "repository": {
     "type": "git",
